@@ -1,0 +1,19 @@
+.row
+  .col-xs-5
+    = simple_form_for @employee, :html => { :class => 'form-horizontal validatable-form' } do |f|
+      = f.input :first_name, input_html: {id: "first_name", placeholder: "Имя", type: 'text', 'data-msg-minlength' => 'Поле не может быть пустым', 'data-rule-minlength' => '1', 'data-rule-maxlength' => '256', 'data-rule-required' => "true"}
+      .help-block
+        Пример: Иван
+      = f.input :last_name, input_html: {id: "last_name", placeholder: "Фамилия", type: 'text', 'data-msg-minlength' => 'Поле не может быть пустым', 'data-rule-minlength' => '1', 'data-rule-maxlength' => '256', 'data-rule-required' => "true"}
+      .help-block
+        Пример: Иванов
+      = f.simple_fields_for :phone do |fp|
+        = fp.input :number, type: :tel, input_html: {id: "number", placeholder: "Номер телефона", type: 'text', 'data-msg-minlength' => 'Поле не может быть пустым', 'data-rule-minlength' => '1', 'data-msg-regex' => 'Должен иметь формат: +7 (xxx) xxx-xx-xx', 'data-rule-regex' => "\+7\s?\(\d{3}\)\s?\d{3}\-\d{2}\-\d{2}", 'data-rule-required' => "true"}
+        .help-block
+          Должен иметь формат: +7 (xxx) xxx-xx-xx
+      = f.association :manager, collection: manager_collection(@employee), input_html: {id: "manager"}
+      %br
+      = f.button :submit, :type => "submit", :class => 'btn btn-primary'
+      = link_to t("helpers.links.cancel"), employees_path, :class => 'btn btn-default'
+
+

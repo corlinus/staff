@@ -1,0 +1,47 @@
+.page-header
+  %h1= t '.title'
+%dl.dl-horizontal
+  %dt
+    %strong
+      = Employee.human_attribute_name(:full_name)
+      \:
+  %dd= @employee.full_name
+  %dt
+    %strong
+      = Phone.human_attribute_name(:number)
+      \:
+  %dd= @employee.phone.number
+  - manager = @employee.manager  
+  - if manager
+    %dt
+      %strong
+        = Employee.human_attribute_name(:manager)
+        \:
+    %dd
+      = link_to manager.full_name, employee_path(manager)
+    %dt
+      %strong
+        = Phone.human_attribute_name(:number)
+        \:
+    %dd= manager.phone.number
+- subordinates = @employee.subordinates
+- if subordinates.any?
+  %p
+    %b
+      = Employee.human_attribute_name(:subordinates_list)
+      \:   
+  - @employee.subordinates.each do |subordinat|
+    %dl.dl-horizontal
+      %dt
+        %strong
+          = Employee.human_attribute_name(:full_name)
+        \:
+      %dd= link_to subordinat.full_name, employee_path(subordinat)
+      %dt
+        %strong
+          = Phone.human_attribute_name(:number)
+          \:
+      %dd= subordinat.phone.number
+= link_to t('.back', :default => t("helpers.links.back")), employees_path, :class => 'btn btn-default'              
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_employee_path(@employee), :class => 'btn btn-default' 
+= link_to t('.destroy', :default => t("helpers.links.destroy")), employee_path(@employee), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'                                                                                   |

@@ -1,0 +1,77 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+  hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        blank: Не может быть пустым
+        invalid: Не соответствует примеру
+    models:
+      employee: Сотрудник
+      phone: Телефон
+    attributes:
+      employee:
+        id: Идентификатор
+        first_name: Имя
+        last_name: Фамилия
+        full_name: Фамилия Имя
+        subordinates: Число подчиненных
+        subordinates_list: Подчиненные
+        manager: Руководитель
+        created_at: Дата внесения в базу
+      phone:
+        number: Номер телефона 
+  time:
+    formats:
+      default: "%d.%m.%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+  employees:
+    index:
+      title: Сотрудники
+      new: Добавить сотрудника
+    new:
+      title: Добавить сотрудника   
+    show:
+      title: Информация о сотруднике   
+    edit:
+      title: Редактировать сотрудника
+  helpers:
+    links:
+      new: Создать
+      edit: Редактировать
+      destroy: Удалить
+      back: Назад
+      cancel: Отменить
+      confirm: Вы уверены?
+    notices:
+      created: Запись успешно добавлена
+      updated: Данные успешно обновлены
+      destroyed: Запись удалена 
+    submit:
+      employee:
+        create: Добавить сотрудника
+        update: Обновить данные   
+
+      # will translate User attribute "login" as "Handle"
+

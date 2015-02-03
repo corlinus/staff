@@ -1,0 +1,20 @@
+- model_class = Employee
+.page-header
+  %h1= t '.title'
+= link_to t('.new'), new_employee_path, :class => 'btn btn-primary'                           
+%br
+%br
+%table.table.table-striped.table-bordered
+  %thead
+    %tr
+      %th= model_class.human_attribute_name(:full_name)
+      %th= model_class.human_attribute_name(:subordinates)
+      %th= t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @employees.each do |employee|
+      %tr
+        %td= link_to employee.full_name, employee_path(employee)
+        %td= employee.subordinates.count
+        %td
+          = link_to t('helpers.links.edit'), edit_employee_path(employee), :class => 'btn btn-default btn-xs'
+          = link_to t('helpers.links.destroy'), employee_path(employee), :method => :delete, :data => { :confirm => t("helpers.links.confirm") }, :class => 'btn btn-xs btn-danger'                                                                          
